@@ -1,133 +1,118 @@
-syntax = "proto3";
+syntax ="proto3";
 
 package auth;
 
-option go_package = "github.com/wfx/grpc-gateway;grpcGateway";
+option go_package = "github.com/wfx2/contracts;authGrpc";
 
 import "google/api/annotations.proto";
 
-
 service Auth {
-
-  rpc Register (RegisterRequest) returns (RegisterResponse){
-    option (google.api.http) = {
-        post: "/id/register"
-        body: "*"
+    rpc Register (RegisterRequest) returns (RegisterResponese){
+        option (google.api.http) = {
+            post: "/id/register"
+            body: "*"
+        };
     };
-  }
-
-  rpc Login (LoginRequest) returns (LoginResponse){
+    rpc Login (LoginRequest) returns (LoginResponese){
     option (google.api.http) = {
         post: "/id/login"
         body: "*"
     };
-  }
-
-
-  rpc Logout (LogoutRequest) returns (LogoutResponse)
-  {
-    option (google.api.http) = {
-        post: "/id/logout"
-        body: "*"
     };
-  } 
 
-  rpc UpdateNumber (UpdateNumberRequest) returns (UpdateNumberResponse)
-  {
-    option (google.api.http) = {
-        put: "/account/personal/number"
-        body: "*"
+    rpc UpdateDisplayEmail (DisplayEmailRequest) returns( DisplayEmailResponese){
+        option (google.api.http) = {
+            put: "/account/personal/update-display-email"
+            body: "*"
+        };
     };
-  }
 
-  rpc UpdatePassword (UpdatePasswordRequest) returns (UpdatePasswordResponse)
-  {
-    option (google.api.http) = {
-        put: "/account/personal/password"
-        body: "*"
+    rpc UpdateTelephone (DisplayTelephoneRequest) returns( DisplayTelephoneResponese){
+        option (google.api.http) = {
+            put: "/account/personal/update-display-telephone"
+            body: "*"
+        };
     };
-  }
 
-  rpc DeleteAccount (DeleteAccountRequest) returns (DeleteAccountResponse)
-  {
-    option (google.api.http) = {
-        put: "/account/personal/deleteAccount"
-        body: "*"
+    rpc ChangePassword (ChangePasswordRequest) returns( ChangePasswordResponese){
+        option (google.api.http) = {
+            put: "/account/personal/change-password"
+            body: "*"
+        };
     };
-  }
 
-   rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
+    rpc DeleteAccount (AccountRequest) returns( AccountResponese){
+        option (google.api.http) = {
+            delete: "/account/personal/delete"
+        };
+    };
+
+    rpc IsAdmin (IsAdminRequest) returns (IsAdminResponese);
 }
 
-message UpdatePasswordRequest{
-  int64 user_id = 1;
-  string new_password = 2;
-  string password = 3;
-  int32 app_id = 4;
+message ChangePasswordRequest{
+    string new_password =1 ;
+    string check_password = 2;
+    string old_passwaord = 5;
+    int64 user_id = 3;
+    int32 appID =4;
 }
 
-message UpdatePasswordResponse{
-  bool success = 1;
+message ChangePasswordResponese{
+    bool success = 1;
 }
 
-message UpdateNumberRequest{
-  int64 user_id = 1;
-  string number = 2;
+message AccountRequest{
+    int64 user_id = 1;
 }
 
-message UpdateNumberResponse{
-  bool success = 1;
+message AccountResponese{
+    bool is_user = 1;
 }
 
-message DeleteAccountRequest{
-  int64 user_id = 1;
+message DisplayTelephoneRequest{
+    string new_number = 1;
+    int64 user_id = 2;
+    int32 app_id =3;
 }
 
-message DeleteAccountResponse{
-  bool success = 1;
+message DisplayTelephoneResponese{
+    bool success = 1;
 }
 
-message IsAdminRequest {
-  int64 user_id = 1; 
+message DisplayEmailRequest{
+    string new_email =1;
+    int64 user_id = 2;
+    int32 app_id =3;
 }
 
-message IsAdminResponse {
-  bool is_admin = 1;  
+message DisplayEmailResponese{
+    bool success =1;
 }
 
-message RegisterRequest {
-  string email = 1; 
-  string password = 2; 
+message RegisterRequest{
+    string email = 1;
+    string password = 2;
 }
 
-message RegisterResponse {
-  int64 user_id = 1; 
+message RegisterResponese{
+    int64 user_id = 1;
 }
 
-message LoginRequest {
-  string email = 1; 
-  string password = 2; 
-  int32 app_id = 3; 
+message LoginRequest{
+    string email = 1;
+    string password = 2;
+    int32 app_id = 3;
 }
 
-message LoginResponse {
-  string token = 1; 
+message LoginResponese{
+    string token = 1;
 }
 
-message LogoutRequest {
-  string token = 1; 
+message IsAdminRequest{
+    int64 user_id = 1;
 }
 
-message LogoutResponse {
-  bool success = 1; 
+message IsAdminResponese{
+    bool is_admin = 1;
 }
-/*protoc \
-  -I . \
-  -I /home/vlad/grpc-gateway/googleapis \
-  --go_out . \
-  --go_opt paths=source_relative \
-  --go-grpc_out . \
-  --go-grpc_opt paths=source_relative \
-  --grpc-gateway_out . \
-  --grpc-gateway_opt paths=source_relative \
-  proto/auth/auth.proto*/

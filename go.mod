@@ -1,4 +1,5 @@
-module grpc-getway
+module github.com/wfx2/contracts
+
 
 go 1.24.1
 

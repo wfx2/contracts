@@ -4,16 +4,15 @@
 // 	protoc        v3.21.12
 // source: proto/auth/auth.proto
 
-package grpcGateway
+package authGrpc
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -23,30 +22,31 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type UpdatePasswordRequest struct {
+type ChangePasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	NewPasswrod   string                 `protobuf:"bytes,2,opt,name=new_passwrod,json=newPasswrod,proto3" json:"new_passwrod,omitempty"`
-	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
-	AppId         int32                  `protobuf:"varint,4,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+	NewPassword   string                 `protobuf:"bytes,1,opt,name=new_password,json=newPassword,proto3" json:"new_password,omitempty"`
+	CheckPassword string                 `protobuf:"bytes,2,opt,name=check_password,json=checkPassword,proto3" json:"check_password,omitempty"`
+	OldPasswaord  string                 `protobuf:"bytes,5,opt,name=old_passwaord,json=oldPasswaord,proto3" json:"old_passwaord,omitempty"`
+	UserId        int64                  `protobuf:"varint,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	AppID         int32                  `protobuf:"varint,4,opt,name=appID,proto3" json:"appID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdatePasswordRequest) Reset() {
-	*x = UpdatePasswordRequest{}
+func (x *ChangePasswordRequest) Reset() {
+	*x = ChangePasswordRequest{}
 	mi := &file_proto_auth_auth_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdatePasswordRequest) String() string {
+func (x *ChangePasswordRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdatePasswordRequest) ProtoMessage() {}
+func (*ChangePasswordRequest) ProtoMessage() {}
 
-func (x *UpdatePasswordRequest) ProtoReflect() protoreflect.Message {
+func (x *ChangePasswordRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_auth_auth_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -58,61 +58,260 @@ func (x *UpdatePasswordRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdatePasswordRequest.ProtoReflect.Descriptor instead.
-func (*UpdatePasswordRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ChangePasswordRequest.ProtoReflect.Descriptor instead.
+func (*ChangePasswordRequest) Descriptor() ([]byte, []int) {
 	return file_proto_auth_auth_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UpdatePasswordRequest) GetUserId() int64 {
+func (x *ChangePasswordRequest) GetNewPassword() string {
+	if x != nil {
+		return x.NewPassword
+	}
+	return ""
+}
+
+func (x *ChangePasswordRequest) GetCheckPassword() string {
+	if x != nil {
+		return x.CheckPassword
+	}
+	return ""
+}
+
+func (x *ChangePasswordRequest) GetOldPasswaord() string {
+	if x != nil {
+		return x.OldPasswaord
+	}
+	return ""
+}
+
+func (x *ChangePasswordRequest) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
 	return 0
 }
 
-func (x *UpdatePasswordRequest) GetNewPasswrod() string {
+func (x *ChangePasswordRequest) GetAppID() int32 {
 	if x != nil {
-		return x.NewPasswrod
+		return x.AppID
+	}
+	return 0
+}
+
+type ChangePasswordResponese struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChangePasswordResponese) Reset() {
+	*x = ChangePasswordResponese{}
+	mi := &file_proto_auth_auth_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChangePasswordResponese) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChangePasswordResponese) ProtoMessage() {}
+
+func (x *ChangePasswordResponese) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_auth_auth_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChangePasswordResponese.ProtoReflect.Descriptor instead.
+func (*ChangePasswordResponese) Descriptor() ([]byte, []int) {
+	return file_proto_auth_auth_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ChangePasswordResponese) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+type AccountRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AccountRequest) Reset() {
+	*x = AccountRequest{}
+	mi := &file_proto_auth_auth_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AccountRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AccountRequest) ProtoMessage() {}
+
+func (x *AccountRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_auth_auth_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AccountRequest.ProtoReflect.Descriptor instead.
+func (*AccountRequest) Descriptor() ([]byte, []int) {
+	return file_proto_auth_auth_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AccountRequest) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type AccountResponese struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	IsUser        bool                   `protobuf:"varint,1,opt,name=is_user,json=isUser,proto3" json:"is_user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AccountResponese) Reset() {
+	*x = AccountResponese{}
+	mi := &file_proto_auth_auth_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AccountResponese) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AccountResponese) ProtoMessage() {}
+
+func (x *AccountResponese) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_auth_auth_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AccountResponese.ProtoReflect.Descriptor instead.
+func (*AccountResponese) Descriptor() ([]byte, []int) {
+	return file_proto_auth_auth_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *AccountResponese) GetIsUser() bool {
+	if x != nil {
+		return x.IsUser
+	}
+	return false
+}
+
+type DisplayTelephoneRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	NewNumber     string                 `protobuf:"bytes,1,opt,name=new_number,json=newNumber,proto3" json:"new_number,omitempty"`
+	UserId        int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	AppId         int32                  `protobuf:"varint,3,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DisplayTelephoneRequest) Reset() {
+	*x = DisplayTelephoneRequest{}
+	mi := &file_proto_auth_auth_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DisplayTelephoneRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DisplayTelephoneRequest) ProtoMessage() {}
+
+func (x *DisplayTelephoneRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_auth_auth_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DisplayTelephoneRequest.ProtoReflect.Descriptor instead.
+func (*DisplayTelephoneRequest) Descriptor() ([]byte, []int) {
+	return file_proto_auth_auth_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *DisplayTelephoneRequest) GetNewNumber() string {
+	if x != nil {
+		return x.NewNumber
 	}
 	return ""
 }
 
-func (x *UpdatePasswordRequest) GetPassword() string {
+func (x *DisplayTelephoneRequest) GetUserId() int64 {
 	if x != nil {
-		return x.Password
+		return x.UserId
 	}
-	return ""
+	return 0
 }
 
-func (x *UpdatePasswordRequest) GetAppId() int32 {
+func (x *DisplayTelephoneRequest) GetAppId() int32 {
 	if x != nil {
 		return x.AppId
 	}
 	return 0
 }
 
-type UpdatePasswordResponse struct {
+type DisplayTelephoneResponese struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdatePasswordResponse) Reset() {
-	*x = UpdatePasswordResponse{}
-	mi := &file_proto_auth_auth_proto_msgTypes[1]
+func (x *DisplayTelephoneResponese) Reset() {
+	*x = DisplayTelephoneResponese{}
+	mi := &file_proto_auth_auth_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdatePasswordResponse) String() string {
+func (x *DisplayTelephoneResponese) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdatePasswordResponse) ProtoMessage() {}
+func (*DisplayTelephoneResponese) ProtoMessage() {}
 
-func (x *UpdatePasswordResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_auth_proto_msgTypes[1]
+func (x *DisplayTelephoneResponese) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_auth_auth_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123,41 +322,42 @@ func (x *UpdatePasswordResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdatePasswordResponse.ProtoReflect.Descriptor instead.
-func (*UpdatePasswordResponse) Descriptor() ([]byte, []int) {
-	return file_proto_auth_auth_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use DisplayTelephoneResponese.ProtoReflect.Descriptor instead.
+func (*DisplayTelephoneResponese) Descriptor() ([]byte, []int) {
+	return file_proto_auth_auth_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *UpdatePasswordResponse) GetSuccess() bool {
+func (x *DisplayTelephoneResponese) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
 }
 
-type UpdateNumberRequest struct {
+type DisplayEmailRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Number        string                 `protobuf:"bytes,2,opt,name=number,proto3" json:"number,omitempty"`
+	NewEmail      string                 `protobuf:"bytes,1,opt,name=new_email,json=newEmail,proto3" json:"new_email,omitempty"`
+	UserId        int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	AppId         int32                  `protobuf:"varint,3,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateNumberRequest) Reset() {
-	*x = UpdateNumberRequest{}
-	mi := &file_proto_auth_auth_proto_msgTypes[2]
+func (x *DisplayEmailRequest) Reset() {
+	*x = DisplayEmailRequest{}
+	mi := &file_proto_auth_auth_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateNumberRequest) String() string {
+func (x *DisplayEmailRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateNumberRequest) ProtoMessage() {}
+func (*DisplayEmailRequest) ProtoMessage() {}
 
-func (x *UpdateNumberRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_auth_proto_msgTypes[2]
+func (x *DisplayEmailRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_auth_auth_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -168,222 +368,53 @@ func (x *UpdateNumberRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateNumberRequest.ProtoReflect.Descriptor instead.
-func (*UpdateNumberRequest) Descriptor() ([]byte, []int) {
-	return file_proto_auth_auth_proto_rawDescGZIP(), []int{2}
+// Deprecated: Use DisplayEmailRequest.ProtoReflect.Descriptor instead.
+func (*DisplayEmailRequest) Descriptor() ([]byte, []int) {
+	return file_proto_auth_auth_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *UpdateNumberRequest) GetUserId() int64 {
+func (x *DisplayEmailRequest) GetNewEmail() string {
 	if x != nil {
-		return x.UserId
-	}
-	return 0
-}
-
-func (x *UpdateNumberRequest) GetNumber() string {
-	if x != nil {
-		return x.Number
+		return x.NewEmail
 	}
 	return ""
 }
 
-type UpdateNumberResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateNumberResponse) Reset() {
-	*x = UpdateNumberResponse{}
-	mi := &file_proto_auth_auth_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateNumberResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateNumberResponse) ProtoMessage() {}
-
-func (x *UpdateNumberResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_auth_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateNumberResponse.ProtoReflect.Descriptor instead.
-func (*UpdateNumberResponse) Descriptor() ([]byte, []int) {
-	return file_proto_auth_auth_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *UpdateNumberResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-type DeleteAccountRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteAccountRequest) Reset() {
-	*x = DeleteAccountRequest{}
-	mi := &file_proto_auth_auth_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteAccountRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteAccountRequest) ProtoMessage() {}
-
-func (x *DeleteAccountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_auth_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteAccountRequest.ProtoReflect.Descriptor instead.
-func (*DeleteAccountRequest) Descriptor() ([]byte, []int) {
-	return file_proto_auth_auth_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *DeleteAccountRequest) GetUserId() int64 {
+func (x *DisplayEmailRequest) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
 	return 0
 }
 
-type DeleteAccountResponse struct {
+func (x *DisplayEmailRequest) GetAppId() int32 {
+	if x != nil {
+		return x.AppId
+	}
+	return 0
+}
+
+type DisplayEmailResponese struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteAccountResponse) Reset() {
-	*x = DeleteAccountResponse{}
-	mi := &file_proto_auth_auth_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteAccountResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteAccountResponse) ProtoMessage() {}
-
-func (x *DeleteAccountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_auth_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteAccountResponse.ProtoReflect.Descriptor instead.
-func (*DeleteAccountResponse) Descriptor() ([]byte, []int) {
-	return file_proto_auth_auth_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *DeleteAccountResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-type IsAdminRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *IsAdminRequest) Reset() {
-	*x = IsAdminRequest{}
-	mi := &file_proto_auth_auth_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *IsAdminRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*IsAdminRequest) ProtoMessage() {}
-
-func (x *IsAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_auth_auth_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use IsAdminRequest.ProtoReflect.Descriptor instead.
-func (*IsAdminRequest) Descriptor() ([]byte, []int) {
-	return file_proto_auth_auth_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *IsAdminRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
-}
-
-type IsAdminResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	IsAdmin       bool                   `protobuf:"varint,1,opt,name=is_admin,json=isAdmin,proto3" json:"is_admin,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *IsAdminResponse) Reset() {
-	*x = IsAdminResponse{}
+func (x *DisplayEmailResponese) Reset() {
+	*x = DisplayEmailResponese{}
 	mi := &file_proto_auth_auth_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *IsAdminResponse) String() string {
+func (x *DisplayEmailResponese) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*IsAdminResponse) ProtoMessage() {}
+func (*DisplayEmailResponese) ProtoMessage() {}
 
-func (x *IsAdminResponse) ProtoReflect() protoreflect.Message {
+func (x *DisplayEmailResponese) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_auth_auth_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -395,14 +426,14 @@ func (x *IsAdminResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use IsAdminResponse.ProtoReflect.Descriptor instead.
-func (*IsAdminResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use DisplayEmailResponese.ProtoReflect.Descriptor instead.
+func (*DisplayEmailResponese) Descriptor() ([]byte, []int) {
 	return file_proto_auth_auth_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *IsAdminResponse) GetIsAdmin() bool {
+func (x *DisplayEmailResponese) GetSuccess() bool {
 	if x != nil {
-		return x.IsAdmin
+		return x.Success
 	}
 	return false
 }
@@ -459,27 +490,27 @@ func (x *RegisterRequest) GetPassword() string {
 	return ""
 }
 
-type RegisterResponse struct {
+type RegisterResponese struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RegisterResponse) Reset() {
-	*x = RegisterResponse{}
+func (x *RegisterResponese) Reset() {
+	*x = RegisterResponese{}
 	mi := &file_proto_auth_auth_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RegisterResponse) String() string {
+func (x *RegisterResponese) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RegisterResponse) ProtoMessage() {}
+func (*RegisterResponese) ProtoMessage() {}
 
-func (x *RegisterResponse) ProtoReflect() protoreflect.Message {
+func (x *RegisterResponese) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_auth_auth_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -491,12 +522,12 @@ func (x *RegisterResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RegisterResponse.ProtoReflect.Descriptor instead.
-func (*RegisterResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RegisterResponese.ProtoReflect.Descriptor instead.
+func (*RegisterResponese) Descriptor() ([]byte, []int) {
 	return file_proto_auth_auth_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *RegisterResponse) GetUserId() int64 {
+func (x *RegisterResponese) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
@@ -563,27 +594,27 @@ func (x *LoginRequest) GetAppId() int32 {
 	return 0
 }
 
-type LoginResponse struct {
+type LoginResponese struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *LoginResponse) Reset() {
-	*x = LoginResponse{}
+func (x *LoginResponese) Reset() {
+	*x = LoginResponese{}
 	mi := &file_proto_auth_auth_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *LoginResponse) String() string {
+func (x *LoginResponese) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LoginResponse) ProtoMessage() {}
+func (*LoginResponese) ProtoMessage() {}
 
-func (x *LoginResponse) ProtoReflect() protoreflect.Message {
+func (x *LoginResponese) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_auth_auth_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -595,39 +626,39 @@ func (x *LoginResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LoginResponse.ProtoReflect.Descriptor instead.
-func (*LoginResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use LoginResponese.ProtoReflect.Descriptor instead.
+func (*LoginResponese) Descriptor() ([]byte, []int) {
 	return file_proto_auth_auth_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *LoginResponse) GetToken() string {
+func (x *LoginResponese) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
 	return ""
 }
 
-type LogoutRequest struct {
+type IsAdminRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *LogoutRequest) Reset() {
-	*x = LogoutRequest{}
+func (x *IsAdminRequest) Reset() {
+	*x = IsAdminRequest{}
 	mi := &file_proto_auth_auth_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *LogoutRequest) String() string {
+func (x *IsAdminRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LogoutRequest) ProtoMessage() {}
+func (*IsAdminRequest) ProtoMessage() {}
 
-func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
+func (x *IsAdminRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_auth_auth_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -639,39 +670,39 @@ func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LogoutRequest.ProtoReflect.Descriptor instead.
-func (*LogoutRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use IsAdminRequest.ProtoReflect.Descriptor instead.
+func (*IsAdminRequest) Descriptor() ([]byte, []int) {
 	return file_proto_auth_auth_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *LogoutRequest) GetToken() string {
+func (x *IsAdminRequest) GetUserId() int64 {
 	if x != nil {
-		return x.Token
+		return x.UserId
 	}
-	return ""
+	return 0
 }
 
-type LogoutResponse struct {
+type IsAdminResponese struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	IsAdmin       bool                   `protobuf:"varint,1,opt,name=is_admin,json=isAdmin,proto3" json:"is_admin,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *LogoutResponse) Reset() {
-	*x = LogoutResponse{}
+func (x *IsAdminResponese) Reset() {
+	*x = IsAdminResponese{}
 	mi := &file_proto_auth_auth_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *LogoutResponse) String() string {
+func (x *IsAdminResponese) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*LogoutResponse) ProtoMessage() {}
+func (*IsAdminResponese) ProtoMessage() {}
 
-func (x *LogoutResponse) ProtoReflect() protoreflect.Message {
+func (x *IsAdminResponese) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_auth_auth_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -683,14 +714,14 @@ func (x *LogoutResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use LogoutResponse.ProtoReflect.Descriptor instead.
-func (*LogoutResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use IsAdminResponese.ProtoReflect.Descriptor instead.
+func (*IsAdminResponese) Descriptor() ([]byte, []int) {
 	return file_proto_auth_auth_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *LogoutResponse) GetSuccess() bool {
+func (x *IsAdminResponese) GetIsAdmin() bool {
 	if x != nil {
-		return x.Success
+		return x.IsAdmin
 	}
 	return false
 }
@@ -699,51 +730,55 @@ var File_proto_auth_auth_proto protoreflect.FileDescriptor
 
 const file_proto_auth_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x15proto/auth/auth.proto\x12\x04auth\x1a\x1cgoogle/api/annotations.proto\"\x86\x01\n" +
-	"\x15UpdatePasswordRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12!\n" +
-	"\fnew_passwrod\x18\x02 \x01(\tR\vnewPasswrod\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\x12\x15\n" +
-	"\x06app_id\x18\x04 \x01(\x05R\x05appId\"2\n" +
-	"\x16UpdatePasswordResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"F\n" +
-	"\x13UpdateNumberRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x16\n" +
-	"\x06number\x18\x02 \x01(\tR\x06number\"0\n" +
-	"\x14UpdateNumberResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"/\n" +
-	"\x14DeleteAccountRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"1\n" +
-	"\x15DeleteAccountResponse\x12\x18\n" +
+	"\x15proto/auth/auth.proto\x12\x04auth\x1a\x1cgoogle/api/annotations.proto\"\xb5\x01\n" +
+	"\x15ChangePasswordRequest\x12!\n" +
+	"\fnew_password\x18\x01 \x01(\tR\vnewPassword\x12%\n" +
+	"\x0echeck_password\x18\x02 \x01(\tR\rcheckPassword\x12#\n" +
+	"\rold_passwaord\x18\x05 \x01(\tR\foldPasswaord\x12\x17\n" +
+	"\auser_id\x18\x03 \x01(\x03R\x06userId\x12\x14\n" +
+	"\x05appID\x18\x04 \x01(\x05R\x05appID\"3\n" +
+	"\x17ChangePasswordResponese\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\")\n" +
-	"\x0eIsAdminRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\",\n" +
-	"\x0fIsAdminResponse\x12\x19\n" +
-	"\bis_admin\x18\x01 \x01(\bR\aisAdmin\"C\n" +
+	"\x0eAccountRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\"+\n" +
+	"\x10AccountResponese\x12\x17\n" +
+	"\ais_user\x18\x01 \x01(\bR\x06isUser\"h\n" +
+	"\x17DisplayTelephoneRequest\x12\x1d\n" +
+	"\n" +
+	"new_number\x18\x01 \x01(\tR\tnewNumber\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12\x15\n" +
+	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"5\n" +
+	"\x19DisplayTelephoneResponese\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"b\n" +
+	"\x13DisplayEmailRequest\x12\x1b\n" +
+	"\tnew_email\x18\x01 \x01(\tR\bnewEmail\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12\x15\n" +
+	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"1\n" +
+	"\x15DisplayEmailResponese\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"C\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"+\n" +
-	"\x10RegisterResponse\x12\x17\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\",\n" +
+	"\x11RegisterResponese\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"W\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x15\n" +
-	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"%\n" +
-	"\rLoginResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"%\n" +
-	"\rLogoutRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"*\n" +
-	"\x0eLogoutResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xfc\x04\n" +
-	"\x04Auth\x12R\n" +
-	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/id/register\x12F\n" +
-	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/id/login\x12J\n" +
-	"\x06Logout\x12\x13.auth.LogoutRequest\x1a\x14.auth.LogoutResponse\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
-	"/id/logout\x12j\n" +
-	"\fUpdateNumber\x12\x19.auth.UpdateNumberRequest\x1a\x1a.auth.UpdateNumberResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\x1a\x18/account/personal/number\x12r\n" +
-	"\x0eUpdatePassword\x12\x1b.auth.UpdatePasswordRequest\x1a\x1c.auth.UpdatePasswordResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\x1a\x1a/account/personal/password\x12t\n" +
-	"\rDeleteAccount\x12\x1a.auth.DeleteAccountRequest\x1a\x1b.auth.DeleteAccountResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\x1a\x1f/account/personal/deleteAccount\x126\n" +
-	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x15.auth.IsAdminResponseB)Z'github.com/wfx/grpc-gateway;grpcGatewayb\x06proto3"
+	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"&\n" +
+	"\x0eLoginResponese\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\")\n" +
+	"\x0eIsAdminRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\"-\n" +
+	"\x10IsAdminResponese\x12\x19\n" +
+	"\bis_admin\x18\x01 \x01(\bR\aisAdmin2\xc6\x05\n" +
+	"\x04Auth\x12S\n" +
+	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x17.auth.RegisterResponese\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/id/register\x12G\n" +
+	"\x05Login\x12\x12.auth.LoginRequest\x1a\x14.auth.LoginResponese\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/id/login\x12\x7f\n" +
+	"\x12UpdateDisplayEmail\x12\x19.auth.DisplayEmailRequest\x1a\x1b.auth.DisplayEmailResponese\"1\x82\xd3\xe4\x93\x02+:\x01*\x1a&/account/personal/update-display-email\x12\x88\x01\n" +
+	"\x0fUpdateTelephone\x12\x1d.auth.DisplayTelephoneRequest\x1a\x1f.auth.DisplayTelephoneResponese\"5\x82\xd3\xe4\x93\x02/:\x01*\x1a*/account/personal/update-display-telephone\x12z\n" +
+	"\x0eChangePassword\x12\x1b.auth.ChangePasswordRequest\x1a\x1d.auth.ChangePasswordResponese\",\x82\xd3\xe4\x93\x02&:\x01*\x1a!/account/personal/change-password\x12_\n" +
+	"\rDeleteAccount\x12\x14.auth.AccountRequest\x1a\x16.auth.AccountResponese\" \x82\xd3\xe4\x93\x02\x1a*\x18/account/personal/delete\x127\n" +
+	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x16.auth.IsAdminResponeseB$Z\"github.com/wfx2/contracts;authGrpcb\x06proto3"
 
 var (
 	file_proto_auth_auth_proto_rawDescOnce sync.Once
@@ -759,36 +794,36 @@ func file_proto_auth_auth_proto_rawDescGZIP() []byte {
 
 var file_proto_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_proto_auth_auth_proto_goTypes = []any{
-	(*UpdatePasswordRequest)(nil),  // 0: auth.UpdatePasswordRequest
-	(*UpdatePasswordResponse)(nil), // 1: auth.UpdatePasswordResponse
-	(*UpdateNumberRequest)(nil),    // 2: auth.UpdateNumberRequest
-	(*UpdateNumberResponse)(nil),   // 3: auth.UpdateNumberResponse
-	(*DeleteAccountRequest)(nil),   // 4: auth.DeleteAccountRequest
-	(*DeleteAccountResponse)(nil),  // 5: auth.DeleteAccountResponse
-	(*IsAdminRequest)(nil),         // 6: auth.IsAdminRequest
-	(*IsAdminResponse)(nil),        // 7: auth.IsAdminResponse
-	(*RegisterRequest)(nil),        // 8: auth.RegisterRequest
-	(*RegisterResponse)(nil),       // 9: auth.RegisterResponse
-	(*LoginRequest)(nil),           // 10: auth.LoginRequest
-	(*LoginResponse)(nil),          // 11: auth.LoginResponse
-	(*LogoutRequest)(nil),          // 12: auth.LogoutRequest
-	(*LogoutResponse)(nil),         // 13: auth.LogoutResponse
+	(*ChangePasswordRequest)(nil),     // 0: auth.ChangePasswordRequest
+	(*ChangePasswordResponese)(nil),   // 1: auth.ChangePasswordResponese
+	(*AccountRequest)(nil),            // 2: auth.AccountRequest
+	(*AccountResponese)(nil),          // 3: auth.AccountResponese
+	(*DisplayTelephoneRequest)(nil),   // 4: auth.DisplayTelephoneRequest
+	(*DisplayTelephoneResponese)(nil), // 5: auth.DisplayTelephoneResponese
+	(*DisplayEmailRequest)(nil),       // 6: auth.DisplayEmailRequest
+	(*DisplayEmailResponese)(nil),     // 7: auth.DisplayEmailResponese
+	(*RegisterRequest)(nil),           // 8: auth.RegisterRequest
+	(*RegisterResponese)(nil),         // 9: auth.RegisterResponese
+	(*LoginRequest)(nil),              // 10: auth.LoginRequest
+	(*LoginResponese)(nil),            // 11: auth.LoginResponese
+	(*IsAdminRequest)(nil),            // 12: auth.IsAdminRequest
+	(*IsAdminResponese)(nil),          // 13: auth.IsAdminResponese
 }
 var file_proto_auth_auth_proto_depIdxs = []int32{
 	8,  // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
 	10, // 1: auth.Auth.Login:input_type -> auth.LoginRequest
-	12, // 2: auth.Auth.Logout:input_type -> auth.LogoutRequest
-	2,  // 3: auth.Auth.UpdateNumber:input_type -> auth.UpdateNumberRequest
-	0,  // 4: auth.Auth.UpdatePassword:input_type -> auth.UpdatePasswordRequest
-	4,  // 5: auth.Auth.DeleteAccount:input_type -> auth.DeleteAccountRequest
-	6,  // 6: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
-	9,  // 7: auth.Auth.Register:output_type -> auth.RegisterResponse
-	11, // 8: auth.Auth.Login:output_type -> auth.LoginResponse
-	13, // 9: auth.Auth.Logout:output_type -> auth.LogoutResponse
-	3,  // 10: auth.Auth.UpdateNumber:output_type -> auth.UpdateNumberResponse
-	1,  // 11: auth.Auth.UpdatePassword:output_type -> auth.UpdatePasswordResponse
-	5,  // 12: auth.Auth.DeleteAccount:output_type -> auth.DeleteAccountResponse
-	7,  // 13: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponse
+	6,  // 2: auth.Auth.UpdateDisplayEmail:input_type -> auth.DisplayEmailRequest
+	4,  // 3: auth.Auth.UpdateTelephone:input_type -> auth.DisplayTelephoneRequest
+	0,  // 4: auth.Auth.ChangePassword:input_type -> auth.ChangePasswordRequest
+	2,  // 5: auth.Auth.DeleteAccount:input_type -> auth.AccountRequest
+	12, // 6: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
+	9,  // 7: auth.Auth.Register:output_type -> auth.RegisterResponese
+	11, // 8: auth.Auth.Login:output_type -> auth.LoginResponese
+	7,  // 9: auth.Auth.UpdateDisplayEmail:output_type -> auth.DisplayEmailResponese
+	5,  // 10: auth.Auth.UpdateTelephone:output_type -> auth.DisplayTelephoneResponese
+	1,  // 11: auth.Auth.ChangePassword:output_type -> auth.ChangePasswordResponese
+	3,  // 12: auth.Auth.DeleteAccount:output_type -> auth.AccountResponese
+	13, // 13: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponese
 	7,  // [7:14] is the sub-list for method output_type
 	0,  // [0:7] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
