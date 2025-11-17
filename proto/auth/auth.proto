@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "github.com/wfx/grpc-gateway;grpcGateway";
+
+import "google/api/annotations.proto";
+
+
+service Auth {
+
+  rpc Register (RegisterRequest) returns (RegisterResponse){
+    option (google.api.http) = {
+        post: "/id/register"
+        body: "*"
+    };
+  }
+
+  rpc Login (LoginRequest) returns (LoginResponse){
+    option (google.api.http) = {
+        post: "/id/login"
+        body: "*"
+    };
+  }
+
+
+  rpc Logout (LogoutRequest) returns (LogoutResponse)
+  {
+    option (google.api.http) = {
+        post: "/id/logout"
+        body: "*"
+    };
+  } 
+
+  rpc UpdateNumber (UpdateNumberRequest) returns (UpdateNumberResponse)
+  {
+    option (google.api.http) = {
+        put: "/account/personal/number"
+        body: "*"
+    };
+  }
+
+  rpc UpdatePassword (UpdatePasswordRequest) returns (UpdatePasswordResponse)
+  {
+    option (google.api.http) = {
+        put: "/account/personal/password"
+        body: "*"
+    };
+  }
+
+  rpc DeleteAccount (DeleteAccountRequest) returns (DeleteAccountResponse)
+  {
+    option (google.api.http) = {
+        put: "/account/personal/deleteAccount"
+        body: "*"
+    };
+  }
+
+   rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
+}
+
+message UpdatePasswordRequest{
+  int64 user_id = 1;
+  string new_passwrod = 2;
+  string password = 3;
+  int32 app_id = 4;
+}
+
+message UpdatePasswordResponse{
+  bool success = 1;
+}
+
+message UpdateNumberRequest{
+  int64 user_id = 1;
+  string number = 2;
+}
+
+message UpdateNumberResponse{
+  bool success = 1;
+}
+
+message DeleteAccountRequest{
+  int64 user_id = 1;
+}
+
+message DeleteAccountResponse{
+  bool success = 1;
+}
+
+message IsAdminRequest {
+  int64 user_id = 1; 
+}
+
+message IsAdminResponse {
+  bool is_admin = 1;  
+}
+
+message RegisterRequest {
+  string email = 1; 
+  string password = 2; 
+}
+
+message RegisterResponse {
+  int64 user_id = 1; 
+}
+
+message LoginRequest {
+  string email = 1; 
+  string password = 2; 
+  int32 app_id = 3; 
+}
+
+message LoginResponse {
+  string token = 1; 
+}
+
+message LogoutRequest {
+  string token = 1; 
+}
+
+message LogoutResponse {
+  bool success = 1; 
+}
