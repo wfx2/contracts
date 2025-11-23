@@ -59,7 +59,7 @@ message ChangePasswordRequest{
 }
 
 message ChangePasswordResponese{
-    bool success = 1;
+    string token = 1;
 }
 
 message AccountRequest{
@@ -87,7 +87,7 @@ message DisplayEmailRequest{
 }
 
 message DisplayEmailResponese{
-    bool success =1;
+    string token =1;
 }
 
 message RegisterRequest{

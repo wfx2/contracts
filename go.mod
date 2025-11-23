@@ -1,6 +1,5 @@
 module github.com/wfx2/contracts
 
-
 go 1.24.1
 
 require (
