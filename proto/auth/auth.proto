@@ -76,15 +76,6 @@ message PhoneResponese{
 
 
 message RegisterRequest{
-    string phone = 1;
-    string password = 2;
-}
-
-message RegisterResponese{
-    int64 user_id = 1;
-}
-
-message LoginRequest{
     string name = 1;
     string surname = 2;
     string sex = 3;
@@ -93,6 +84,15 @@ message LoginRequest{
     string company = 6;
     string password = 7;
     int32 app_id = 8;
+}
+
+message RegisterResponese{
+    int64 user_id = 1;
+}
+
+message LoginRequest{
+    string phone = 5;
+    string password = 7;
 }
 
 message LoginResponese{

@@ -337,8 +337,14 @@ func (x *PhoneResponese) GetToken() string {
 
 type RegisterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Phone         string                 `protobuf:"bytes,1,opt,name=phone,proto3" json:"phone,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Surname       string                 `protobuf:"bytes,2,opt,name=surname,proto3" json:"surname,omitempty"`
+	Sex           string                 `protobuf:"bytes,3,opt,name=sex,proto3" json:"sex,omitempty"`
+	BirthDate     string                 `protobuf:"bytes,4,opt,name=birth_date,json=birthDate,proto3" json:"birth_date,omitempty"`
+	Phone         string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
+	Company       string                 `protobuf:"bytes,6,opt,name=company,proto3" json:"company,omitempty"`
+	Password      string                 `protobuf:"bytes,7,opt,name=password,proto3" json:"password,omitempty"`
+	AppId         int32                  `protobuf:"varint,8,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -373,9 +379,44 @@ func (*RegisterRequest) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{6}
 }
 
+func (x *RegisterRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *RegisterRequest) GetSurname() string {
+	if x != nil {
+		return x.Surname
+	}
+	return ""
+}
+
+func (x *RegisterRequest) GetSex() string {
+	if x != nil {
+		return x.Sex
+	}
+	return ""
+}
+
+func (x *RegisterRequest) GetBirthDate() string {
+	if x != nil {
+		return x.BirthDate
+	}
+	return ""
+}
+
 func (x *RegisterRequest) GetPhone() string {
 	if x != nil {
 		return x.Phone
+	}
+	return ""
+}
+
+func (x *RegisterRequest) GetCompany() string {
+	if x != nil {
+		return x.Company
 	}
 	return ""
 }
@@ -385,6 +426,13 @@ func (x *RegisterRequest) GetPassword() string {
 		return x.Password
 	}
 	return ""
+}
+
+func (x *RegisterRequest) GetAppId() int32 {
+	if x != nil {
+		return x.AppId
+	}
+	return 0
 }
 
 type RegisterResponese struct {
@@ -433,14 +481,8 @@ func (x *RegisterResponese) GetUserId() int64 {
 
 type LoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Surname       string                 `protobuf:"bytes,2,opt,name=surname,proto3" json:"surname,omitempty"`
-	Sex           string                 `protobuf:"bytes,3,opt,name=sex,proto3" json:"sex,omitempty"`
-	BirthDate     string                 `protobuf:"bytes,4,opt,name=birth_date,json=birthDate,proto3" json:"birth_date,omitempty"`
 	Phone         string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
-	Company       string                 `protobuf:"bytes,6,opt,name=company,proto3" json:"company,omitempty"`
 	Password      string                 `protobuf:"bytes,7,opt,name=password,proto3" json:"password,omitempty"`
-	AppId         int32                  `protobuf:"varint,8,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -475,44 +517,9 @@ func (*LoginRequest) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *LoginRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *LoginRequest) GetSurname() string {
-	if x != nil {
-		return x.Surname
-	}
-	return ""
-}
-
-func (x *LoginRequest) GetSex() string {
-	if x != nil {
-		return x.Sex
-	}
-	return ""
-}
-
-func (x *LoginRequest) GetBirthDate() string {
-	if x != nil {
-		return x.BirthDate
-	}
-	return ""
-}
-
 func (x *LoginRequest) GetPhone() string {
 	if x != nil {
 		return x.Phone
-	}
-	return ""
-}
-
-func (x *LoginRequest) GetCompany() string {
-	if x != nil {
-		return x.Company
 	}
 	return ""
 }
@@ -522,13 +529,6 @@ func (x *LoginRequest) GetPassword() string {
 		return x.Password
 	}
 	return ""
-}
-
-func (x *LoginRequest) GetAppId() int32 {
-	if x != nil {
-		return x.AppId
-	}
-	return 0
 }
 
 type LoginResponese struct {
@@ -686,13 +686,8 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12\x15\n" +
 	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"&\n" +
 	"\x0ePhoneResponese\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"C\n" +
-	"\x0fRegisterRequest\x12\x14\n" +
-	"\x05phone\x18\x01 \x01(\tR\x05phone\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\",\n" +
-	"\x11RegisterResponese\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"\xd0\x01\n" +
-	"\fLoginRequest\x12\x12\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\xd3\x01\n" +
+	"\x0fRegisterRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
 	"\asurname\x18\x02 \x01(\tR\asurname\x12\x10\n" +
 	"\x03sex\x18\x03 \x01(\tR\x03sex\x12\x1d\n" +
@@ -701,7 +696,12 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\x05phone\x18\x05 \x01(\tR\x05phone\x12\x18\n" +
 	"\acompany\x18\x06 \x01(\tR\acompany\x12\x1a\n" +
 	"\bpassword\x18\a \x01(\tR\bpassword\x12\x15\n" +
-	"\x06app_id\x18\b \x01(\x05R\x05appId\"&\n" +
+	"\x06app_id\x18\b \x01(\x05R\x05appId\",\n" +
+	"\x11RegisterResponese\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\"@\n" +
+	"\fLoginRequest\x12\x14\n" +
+	"\x05phone\x18\x05 \x01(\tR\x05phone\x12\x1a\n" +
+	"\bpassword\x18\a \x01(\tR\bpassword\"&\n" +
 	"\x0eLoginResponese\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\")\n" +
 	"\x0eIsAdminRequest\x12\x17\n" +
