@@ -91,7 +91,7 @@ func local_request_Auth_Login_0(ctx context.Context, marshaler runtime.Marshaler
 
 func request_Auth_UpdateTelephone_0(ctx context.Context, marshaler runtime.Marshaler, client AuthClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DisplayTelephoneRequest
+		protoReq PhoneRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -106,7 +106,7 @@ func request_Auth_UpdateTelephone_0(ctx context.Context, marshaler runtime.Marsh
 
 func local_request_Auth_UpdateTelephone_0(ctx context.Context, marshaler runtime.Marshaler, server AuthServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DisplayTelephoneRequest
+		protoReq PhoneRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -118,7 +118,7 @@ func local_request_Auth_UpdateTelephone_0(ctx context.Context, marshaler runtime
 
 func request_Auth_ChangePassword_0(ctx context.Context, marshaler runtime.Marshaler, client AuthClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ChangePasswordRequest
+		protoReq PasswordRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -133,7 +133,7 @@ func request_Auth_ChangePassword_0(ctx context.Context, marshaler runtime.Marsha
 
 func local_request_Auth_ChangePassword_0(ctx context.Context, marshaler runtime.Marshaler, server AuthServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ChangePasswordRequest
+		protoReq PasswordRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {

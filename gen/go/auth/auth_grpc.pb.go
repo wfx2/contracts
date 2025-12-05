@@ -34,8 +34,8 @@ const (
 type AuthClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponese, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponese, error)
-	UpdateTelephone(ctx context.Context, in *DisplayTelephoneRequest, opts ...grpc.CallOption) (*DisplayTelephoneResponese, error)
-	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponese, error)
+	UpdateTelephone(ctx context.Context, in *PhoneRequest, opts ...grpc.CallOption) (*PhoneResponese, error)
+	ChangePassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*PasswordResponese, error)
 	DeleteAccount(ctx context.Context, in *AccountRequest, opts ...grpc.CallOption) (*AccountResponese, error)
 	IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...grpc.CallOption) (*IsAdminResponese, error)
 }
@@ -68,9 +68,9 @@ func (c *authClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.C
 	return out, nil
 }
 
-func (c *authClient) UpdateTelephone(ctx context.Context, in *DisplayTelephoneRequest, opts ...grpc.CallOption) (*DisplayTelephoneResponese, error) {
+func (c *authClient) UpdateTelephone(ctx context.Context, in *PhoneRequest, opts ...grpc.CallOption) (*PhoneResponese, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DisplayTelephoneResponese)
+	out := new(PhoneResponese)
 	err := c.cc.Invoke(ctx, Auth_UpdateTelephone_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -78,9 +78,9 @@ func (c *authClient) UpdateTelephone(ctx context.Context, in *DisplayTelephoneRe
 	return out, nil
 }
 
-func (c *authClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponese, error) {
+func (c *authClient) ChangePassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*PasswordResponese, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ChangePasswordResponese)
+	out := new(PasswordResponese)
 	err := c.cc.Invoke(ctx, Auth_ChangePassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -114,8 +114,8 @@ func (c *authClient) IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...gr
 type AuthServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponese, error)
 	Login(context.Context, *LoginRequest) (*LoginResponese, error)
-	UpdateTelephone(context.Context, *DisplayTelephoneRequest) (*DisplayTelephoneResponese, error)
-	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponese, error)
+	UpdateTelephone(context.Context, *PhoneRequest) (*PhoneResponese, error)
+	ChangePassword(context.Context, *PasswordRequest) (*PasswordResponese, error)
 	DeleteAccount(context.Context, *AccountRequest) (*AccountResponese, error)
 	IsAdmin(context.Context, *IsAdminRequest) (*IsAdminResponese, error)
 	mustEmbedUnimplementedAuthServer()
@@ -134,10 +134,10 @@ func (UnimplementedAuthServer) Register(context.Context, *RegisterRequest) (*Reg
 func (UnimplementedAuthServer) Login(context.Context, *LoginRequest) (*LoginResponese, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (UnimplementedAuthServer) UpdateTelephone(context.Context, *DisplayTelephoneRequest) (*DisplayTelephoneResponese, error) {
+func (UnimplementedAuthServer) UpdateTelephone(context.Context, *PhoneRequest) (*PhoneResponese, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTelephone not implemented")
 }
-func (UnimplementedAuthServer) ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponese, error) {
+func (UnimplementedAuthServer) ChangePassword(context.Context, *PasswordRequest) (*PasswordResponese, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
 }
 func (UnimplementedAuthServer) DeleteAccount(context.Context, *AccountRequest) (*AccountResponese, error) {
@@ -204,7 +204,7 @@ func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interfac
 }
 
 func _Auth_UpdateTelephone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DisplayTelephoneRequest)
+	in := new(PhoneRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -216,13 +216,13 @@ func _Auth_UpdateTelephone_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: Auth_UpdateTelephone_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).UpdateTelephone(ctx, req.(*DisplayTelephoneRequest))
+		return srv.(AuthServer).UpdateTelephone(ctx, req.(*PhoneRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Auth_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ChangePasswordRequest)
+	in := new(PasswordRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -234,7 +234,7 @@ func _Auth_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Auth_ChangePassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).ChangePassword(ctx, req.(*ChangePasswordRequest))
+		return srv.(AuthServer).ChangePassword(ctx, req.(*PasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

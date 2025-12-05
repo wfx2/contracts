@@ -23,7 +23,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ChangePasswordRequest struct {
+type PasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	NewPassword   string                 `protobuf:"bytes,1,opt,name=new_password,json=newPassword,proto3" json:"new_password,omitempty"`
 	CheckPassword string                 `protobuf:"bytes,2,opt,name=check_password,json=checkPassword,proto3" json:"check_password,omitempty"`
@@ -34,20 +34,20 @@ type ChangePasswordRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ChangePasswordRequest) Reset() {
-	*x = ChangePasswordRequest{}
+func (x *PasswordRequest) Reset() {
+	*x = PasswordRequest{}
 	mi := &file_auth_auth_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ChangePasswordRequest) String() string {
+func (x *PasswordRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ChangePasswordRequest) ProtoMessage() {}
+func (*PasswordRequest) ProtoMessage() {}
 
-func (x *ChangePasswordRequest) ProtoReflect() protoreflect.Message {
+func (x *PasswordRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -59,67 +59,67 @@ func (x *ChangePasswordRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ChangePasswordRequest.ProtoReflect.Descriptor instead.
-func (*ChangePasswordRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use PasswordRequest.ProtoReflect.Descriptor instead.
+func (*PasswordRequest) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ChangePasswordRequest) GetNewPassword() string {
+func (x *PasswordRequest) GetNewPassword() string {
 	if x != nil {
 		return x.NewPassword
 	}
 	return ""
 }
 
-func (x *ChangePasswordRequest) GetCheckPassword() string {
+func (x *PasswordRequest) GetCheckPassword() string {
 	if x != nil {
 		return x.CheckPassword
 	}
 	return ""
 }
 
-func (x *ChangePasswordRequest) GetOldPasswaord() string {
+func (x *PasswordRequest) GetOldPasswaord() string {
 	if x != nil {
 		return x.OldPasswaord
 	}
 	return ""
 }
 
-func (x *ChangePasswordRequest) GetUserId() int64 {
+func (x *PasswordRequest) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
 	return 0
 }
 
-func (x *ChangePasswordRequest) GetAppID() int32 {
+func (x *PasswordRequest) GetAppID() int32 {
 	if x != nil {
 		return x.AppID
 	}
 	return 0
 }
 
-type ChangePasswordResponese struct {
+type PasswordResponese struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ChangePasswordResponese) Reset() {
-	*x = ChangePasswordResponese{}
+func (x *PasswordResponese) Reset() {
+	*x = PasswordResponese{}
 	mi := &file_auth_auth_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ChangePasswordResponese) String() string {
+func (x *PasswordResponese) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ChangePasswordResponese) ProtoMessage() {}
+func (*PasswordResponese) ProtoMessage() {}
 
-func (x *ChangePasswordResponese) ProtoReflect() protoreflect.Message {
+func (x *PasswordResponese) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -131,12 +131,12 @@ func (x *ChangePasswordResponese) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ChangePasswordResponese.ProtoReflect.Descriptor instead.
-func (*ChangePasswordResponese) Descriptor() ([]byte, []int) {
+// Deprecated: Use PasswordResponese.ProtoReflect.Descriptor instead.
+func (*PasswordResponese) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ChangePasswordResponese) GetToken() string {
+func (x *PasswordResponese) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
@@ -231,7 +231,7 @@ func (x *AccountResponese) GetIsUser() bool {
 	return false
 }
 
-type DisplayTelephoneRequest struct {
+type PhoneRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	NewNumber     string                 `protobuf:"bytes,1,opt,name=new_number,json=newNumber,proto3" json:"new_number,omitempty"`
 	UserId        int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -240,20 +240,20 @@ type DisplayTelephoneRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DisplayTelephoneRequest) Reset() {
-	*x = DisplayTelephoneRequest{}
+func (x *PhoneRequest) Reset() {
+	*x = PhoneRequest{}
 	mi := &file_auth_auth_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DisplayTelephoneRequest) String() string {
+func (x *PhoneRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DisplayTelephoneRequest) ProtoMessage() {}
+func (*PhoneRequest) ProtoMessage() {}
 
-func (x *DisplayTelephoneRequest) ProtoReflect() protoreflect.Message {
+func (x *PhoneRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -265,53 +265,53 @@ func (x *DisplayTelephoneRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DisplayTelephoneRequest.ProtoReflect.Descriptor instead.
-func (*DisplayTelephoneRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use PhoneRequest.ProtoReflect.Descriptor instead.
+func (*PhoneRequest) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *DisplayTelephoneRequest) GetNewNumber() string {
+func (x *PhoneRequest) GetNewNumber() string {
 	if x != nil {
 		return x.NewNumber
 	}
 	return ""
 }
 
-func (x *DisplayTelephoneRequest) GetUserId() int64 {
+func (x *PhoneRequest) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
 	return 0
 }
 
-func (x *DisplayTelephoneRequest) GetAppId() int32 {
+func (x *PhoneRequest) GetAppId() int32 {
 	if x != nil {
 		return x.AppId
 	}
 	return 0
 }
 
-type DisplayTelephoneResponese struct {
+type PhoneResponese struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DisplayTelephoneResponese) Reset() {
-	*x = DisplayTelephoneResponese{}
+func (x *PhoneResponese) Reset() {
+	*x = PhoneResponese{}
 	mi := &file_auth_auth_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DisplayTelephoneResponese) String() string {
+func (x *PhoneResponese) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DisplayTelephoneResponese) ProtoMessage() {}
+func (*PhoneResponese) ProtoMessage() {}
 
-func (x *DisplayTelephoneResponese) ProtoReflect() protoreflect.Message {
+func (x *PhoneResponese) ProtoReflect() protoreflect.Message {
 	mi := &file_auth_auth_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -323,12 +323,12 @@ func (x *DisplayTelephoneResponese) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DisplayTelephoneResponese.ProtoReflect.Descriptor instead.
-func (*DisplayTelephoneResponese) Descriptor() ([]byte, []int) {
+// Deprecated: Use PhoneResponese.ProtoReflect.Descriptor instead.
+func (*PhoneResponese) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *DisplayTelephoneResponese) GetToken() string {
+func (x *PhoneResponese) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
@@ -667,25 +667,25 @@ var File_auth_auth_proto protoreflect.FileDescriptor
 
 const file_auth_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x0fauth/auth.proto\x12\x04auth\x1a\x1cgoogle/api/annotations.proto\"\xb5\x01\n" +
-	"\x15ChangePasswordRequest\x12!\n" +
+	"\x0fauth/auth.proto\x12\x04auth\x1a\x1cgoogle/api/annotations.proto\"\xaf\x01\n" +
+	"\x0fPasswordRequest\x12!\n" +
 	"\fnew_password\x18\x01 \x01(\tR\vnewPassword\x12%\n" +
 	"\x0echeck_password\x18\x02 \x01(\tR\rcheckPassword\x12#\n" +
 	"\rold_passwaord\x18\x05 \x01(\tR\foldPasswaord\x12\x17\n" +
 	"\auser_id\x18\x03 \x01(\x03R\x06userId\x12\x14\n" +
-	"\x05appID\x18\x04 \x01(\x05R\x05appID\"/\n" +
-	"\x17ChangePasswordResponese\x12\x14\n" +
+	"\x05appID\x18\x04 \x01(\x05R\x05appID\")\n" +
+	"\x11PasswordResponese\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\")\n" +
 	"\x0eAccountRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"+\n" +
 	"\x10AccountResponese\x12\x17\n" +
-	"\ais_user\x18\x01 \x01(\bR\x06isUser\"h\n" +
-	"\x17DisplayTelephoneRequest\x12\x1d\n" +
+	"\ais_user\x18\x01 \x01(\bR\x06isUser\"]\n" +
+	"\fPhoneRequest\x12\x1d\n" +
 	"\n" +
 	"new_number\x18\x01 \x01(\tR\tnewNumber\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12\x15\n" +
-	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"1\n" +
-	"\x19DisplayTelephoneResponese\x12\x14\n" +
+	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"&\n" +
+	"\x0ePhoneResponese\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"C\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05phone\x18\x01 \x01(\tR\x05phone\x12\x1a\n" +
@@ -707,12 +707,12 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\x0eIsAdminRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"-\n" +
 	"\x10IsAdminResponese\x12\x19\n" +
-	"\bis_admin\x18\x01 \x01(\bR\aisAdmin2\xaa\x04\n" +
+	"\bis_admin\x18\x01 \x01(\bR\aisAdmin2\x88\x04\n" +
 	"\x04Auth\x12S\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x17.auth.RegisterResponese\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/id/register\x12G\n" +
-	"\x05Login\x12\x12.auth.LoginRequest\x1a\x14.auth.LoginResponese\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/id/login\x12u\n" +
-	"\x0fUpdateTelephone\x12\x1d.auth.DisplayTelephoneRequest\x1a\x1f.auth.DisplayTelephoneResponese\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\x1a\x17/account/personal/phone\x12s\n" +
-	"\x0eChangePassword\x12\x1b.auth.ChangePasswordRequest\x1a\x1d.auth.ChangePasswordResponese\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\x1a\x1a/account/personal/password\x12_\n" +
+	"\x05Login\x12\x12.auth.LoginRequest\x1a\x14.auth.LoginResponese\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/id/login\x12_\n" +
+	"\x0fUpdateTelephone\x12\x12.auth.PhoneRequest\x1a\x14.auth.PhoneResponese\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\x1a\x17/account/personal/phone\x12g\n" +
+	"\x0eChangePassword\x12\x15.auth.PasswordRequest\x1a\x17.auth.PasswordResponese\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\x1a\x1a/account/personal/password\x12_\n" +
 	"\rDeleteAccount\x12\x14.auth.AccountRequest\x1a\x16.auth.AccountResponese\" \x82\xd3\xe4\x93\x02\x1a*\x18/account/personal/delete\x127\n" +
 	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x16.auth.IsAdminResponeseB$Z\"github.com/wfx2/contracts;authGrpcb\x06proto3"
 
@@ -730,30 +730,30 @@ func file_auth_auth_proto_rawDescGZIP() []byte {
 
 var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_auth_auth_proto_goTypes = []any{
-	(*ChangePasswordRequest)(nil),     // 0: auth.ChangePasswordRequest
-	(*ChangePasswordResponese)(nil),   // 1: auth.ChangePasswordResponese
-	(*AccountRequest)(nil),            // 2: auth.AccountRequest
-	(*AccountResponese)(nil),          // 3: auth.AccountResponese
-	(*DisplayTelephoneRequest)(nil),   // 4: auth.DisplayTelephoneRequest
-	(*DisplayTelephoneResponese)(nil), // 5: auth.DisplayTelephoneResponese
-	(*RegisterRequest)(nil),           // 6: auth.RegisterRequest
-	(*RegisterResponese)(nil),         // 7: auth.RegisterResponese
-	(*LoginRequest)(nil),              // 8: auth.LoginRequest
-	(*LoginResponese)(nil),            // 9: auth.LoginResponese
-	(*IsAdminRequest)(nil),            // 10: auth.IsAdminRequest
-	(*IsAdminResponese)(nil),          // 11: auth.IsAdminResponese
+	(*PasswordRequest)(nil),   // 0: auth.PasswordRequest
+	(*PasswordResponese)(nil), // 1: auth.PasswordResponese
+	(*AccountRequest)(nil),    // 2: auth.AccountRequest
+	(*AccountResponese)(nil),  // 3: auth.AccountResponese
+	(*PhoneRequest)(nil),      // 4: auth.PhoneRequest
+	(*PhoneResponese)(nil),    // 5: auth.PhoneResponese
+	(*RegisterRequest)(nil),   // 6: auth.RegisterRequest
+	(*RegisterResponese)(nil), // 7: auth.RegisterResponese
+	(*LoginRequest)(nil),      // 8: auth.LoginRequest
+	(*LoginResponese)(nil),    // 9: auth.LoginResponese
+	(*IsAdminRequest)(nil),    // 10: auth.IsAdminRequest
+	(*IsAdminResponese)(nil),  // 11: auth.IsAdminResponese
 }
 var file_auth_auth_proto_depIdxs = []int32{
 	6,  // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
 	8,  // 1: auth.Auth.Login:input_type -> auth.LoginRequest
-	4,  // 2: auth.Auth.UpdateTelephone:input_type -> auth.DisplayTelephoneRequest
-	0,  // 3: auth.Auth.ChangePassword:input_type -> auth.ChangePasswordRequest
+	4,  // 2: auth.Auth.UpdateTelephone:input_type -> auth.PhoneRequest
+	0,  // 3: auth.Auth.ChangePassword:input_type -> auth.PasswordRequest
 	2,  // 4: auth.Auth.DeleteAccount:input_type -> auth.AccountRequest
 	10, // 5: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
 	7,  // 6: auth.Auth.Register:output_type -> auth.RegisterResponese
 	9,  // 7: auth.Auth.Login:output_type -> auth.LoginResponese
-	5,  // 8: auth.Auth.UpdateTelephone:output_type -> auth.DisplayTelephoneResponese
-	1,  // 9: auth.Auth.ChangePassword:output_type -> auth.ChangePasswordResponese
+	5,  // 8: auth.Auth.UpdateTelephone:output_type -> auth.PhoneResponese
+	1,  // 9: auth.Auth.ChangePassword:output_type -> auth.PasswordResponese
 	3,  // 10: auth.Auth.DeleteAccount:output_type -> auth.AccountResponese
 	11, // 11: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponese
 	6,  // [6:12] is the sub-list for method output_type

@@ -21,14 +21,14 @@ service Auth {
         };
     };
 
-    rpc UpdateTelephone (DisplayTelephoneRequest) returns( DisplayTelephoneResponese){
+    rpc UpdateTelephone (PhoneRequest) returns( PhoneResponese){
         option (google.api.http) = {
             put: "/account/personal/phone"
             body: "*"
         };
     };
 
-    rpc ChangePassword (ChangePasswordRequest) returns( ChangePasswordResponese){
+    rpc ChangePassword (PasswordRequest) returns( PasswordResponese){
         option (google.api.http) = {
             put: "/account/personal/password"
             body: "*"
@@ -44,7 +44,7 @@ service Auth {
     rpc IsAdmin (IsAdminRequest) returns (IsAdminResponese);
 }
 
-message ChangePasswordRequest{
+message PasswordRequest{
     string new_password =1 ;
     string check_password = 2;
     string old_passwaord = 5;
@@ -52,7 +52,7 @@ message ChangePasswordRequest{
     int32 appID =4;
 }
 
-message ChangePasswordResponese{
+message PasswordResponese{
     string token = 1;
 }
 
@@ -64,13 +64,13 @@ message AccountResponese{
     bool is_user = 1;
 }
 
-message DisplayTelephoneRequest{
+message PhoneRequest{
     string new_number = 1;
     int64 user_id = 2;
     int32 app_id =3;
 }
 
-message DisplayTelephoneResponese{
+message PhoneResponese{
     string token = 1;
 }
 
