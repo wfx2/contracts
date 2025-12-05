@@ -7,13 +7,12 @@
 package authGrpc
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -293,7 +292,7 @@ func (x *DisplayTelephoneRequest) GetAppId() int32 {
 
 type DisplayTelephoneResponese struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -328,111 +327,7 @@ func (*DisplayTelephoneResponese) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *DisplayTelephoneResponese) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-type DisplayEmailRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	NewEmail      string                 `protobuf:"bytes,1,opt,name=new_email,json=newEmail,proto3" json:"new_email,omitempty"`
-	UserId        int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	AppId         int32                  `protobuf:"varint,3,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DisplayEmailRequest) Reset() {
-	*x = DisplayEmailRequest{}
-	mi := &file_auth_auth_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DisplayEmailRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DisplayEmailRequest) ProtoMessage() {}
-
-func (x *DisplayEmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_auth_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DisplayEmailRequest.ProtoReflect.Descriptor instead.
-func (*DisplayEmailRequest) Descriptor() ([]byte, []int) {
-	return file_auth_auth_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *DisplayEmailRequest) GetNewEmail() string {
-	if x != nil {
-		return x.NewEmail
-	}
-	return ""
-}
-
-func (x *DisplayEmailRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
-}
-
-func (x *DisplayEmailRequest) GetAppId() int32 {
-	if x != nil {
-		return x.AppId
-	}
-	return 0
-}
-
-type DisplayEmailResponese struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DisplayEmailResponese) Reset() {
-	*x = DisplayEmailResponese{}
-	mi := &file_auth_auth_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DisplayEmailResponese) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DisplayEmailResponese) ProtoMessage() {}
-
-func (x *DisplayEmailResponese) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_auth_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DisplayEmailResponese.ProtoReflect.Descriptor instead.
-func (*DisplayEmailResponese) Descriptor() ([]byte, []int) {
-	return file_auth_auth_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *DisplayEmailResponese) GetToken() string {
+func (x *DisplayTelephoneResponese) GetToken() string {
 	if x != nil {
 		return x.Token
 	}
@@ -441,7 +336,7 @@ func (x *DisplayEmailResponese) GetToken() string {
 
 type RegisterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Phone         string                 `protobuf:"bytes,1,opt,name=phone,proto3" json:"phone,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -449,7 +344,7 @@ type RegisterRequest struct {
 
 func (x *RegisterRequest) Reset() {
 	*x = RegisterRequest{}
-	mi := &file_auth_auth_proto_msgTypes[8]
+	mi := &file_auth_auth_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -461,7 +356,7 @@ func (x *RegisterRequest) String() string {
 func (*RegisterRequest) ProtoMessage() {}
 
 func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_auth_proto_msgTypes[8]
+	mi := &file_auth_auth_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -474,12 +369,12 @@ func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterRequest.ProtoReflect.Descriptor instead.
 func (*RegisterRequest) Descriptor() ([]byte, []int) {
-	return file_auth_auth_proto_rawDescGZIP(), []int{8}
+	return file_auth_auth_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *RegisterRequest) GetEmail() string {
+func (x *RegisterRequest) GetPhone() string {
 	if x != nil {
-		return x.Email
+		return x.Phone
 	}
 	return ""
 }
@@ -500,7 +395,7 @@ type RegisterResponese struct {
 
 func (x *RegisterResponese) Reset() {
 	*x = RegisterResponese{}
-	mi := &file_auth_auth_proto_msgTypes[9]
+	mi := &file_auth_auth_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -512,7 +407,7 @@ func (x *RegisterResponese) String() string {
 func (*RegisterResponese) ProtoMessage() {}
 
 func (x *RegisterResponese) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_auth_proto_msgTypes[9]
+	mi := &file_auth_auth_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -525,7 +420,7 @@ func (x *RegisterResponese) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterResponese.ProtoReflect.Descriptor instead.
 func (*RegisterResponese) Descriptor() ([]byte, []int) {
-	return file_auth_auth_proto_rawDescGZIP(), []int{9}
+	return file_auth_auth_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *RegisterResponese) GetUserId() int64 {
@@ -537,16 +432,21 @@ func (x *RegisterResponese) GetUserId() int64 {
 
 type LoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	AppId         int32                  `protobuf:"varint,3,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Surname       string                 `protobuf:"bytes,2,opt,name=surname,proto3" json:"surname,omitempty"`
+	Sex           string                 `protobuf:"bytes,3,opt,name=sex,proto3" json:"sex,omitempty"`
+	BirthDate     string                 `protobuf:"bytes,4,opt,name=birth_date,json=birthDate,proto3" json:"birth_date,omitempty"`
+	Phone         string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
+	Company       string                 `protobuf:"bytes,6,opt,name=company,proto3" json:"company,omitempty"`
+	Password      string                 `protobuf:"bytes,7,opt,name=password,proto3" json:"password,omitempty"`
+	AppId         int32                  `protobuf:"varint,8,opt,name=app_id,json=appId,proto3" json:"app_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *LoginRequest) Reset() {
 	*x = LoginRequest{}
-	mi := &file_auth_auth_proto_msgTypes[10]
+	mi := &file_auth_auth_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -558,7 +458,7 @@ func (x *LoginRequest) String() string {
 func (*LoginRequest) ProtoMessage() {}
 
 func (x *LoginRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_auth_proto_msgTypes[10]
+	mi := &file_auth_auth_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -571,12 +471,47 @@ func (x *LoginRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
 func (*LoginRequest) Descriptor() ([]byte, []int) {
-	return file_auth_auth_proto_rawDescGZIP(), []int{10}
+	return file_auth_auth_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *LoginRequest) GetEmail() string {
+func (x *LoginRequest) GetName() string {
 	if x != nil {
-		return x.Email
+		return x.Name
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetSurname() string {
+	if x != nil {
+		return x.Surname
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetSex() string {
+	if x != nil {
+		return x.Sex
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetBirthDate() string {
+	if x != nil {
+		return x.BirthDate
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetPhone() string {
+	if x != nil {
+		return x.Phone
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetCompany() string {
+	if x != nil {
+		return x.Company
 	}
 	return ""
 }
@@ -604,7 +539,7 @@ type LoginResponese struct {
 
 func (x *LoginResponese) Reset() {
 	*x = LoginResponese{}
-	mi := &file_auth_auth_proto_msgTypes[11]
+	mi := &file_auth_auth_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -616,7 +551,7 @@ func (x *LoginResponese) String() string {
 func (*LoginResponese) ProtoMessage() {}
 
 func (x *LoginResponese) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_auth_proto_msgTypes[11]
+	mi := &file_auth_auth_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -629,7 +564,7 @@ func (x *LoginResponese) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginResponese.ProtoReflect.Descriptor instead.
 func (*LoginResponese) Descriptor() ([]byte, []int) {
-	return file_auth_auth_proto_rawDescGZIP(), []int{11}
+	return file_auth_auth_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *LoginResponese) GetToken() string {
@@ -648,7 +583,7 @@ type IsAdminRequest struct {
 
 func (x *IsAdminRequest) Reset() {
 	*x = IsAdminRequest{}
-	mi := &file_auth_auth_proto_msgTypes[12]
+	mi := &file_auth_auth_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -660,7 +595,7 @@ func (x *IsAdminRequest) String() string {
 func (*IsAdminRequest) ProtoMessage() {}
 
 func (x *IsAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_auth_proto_msgTypes[12]
+	mi := &file_auth_auth_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -673,7 +608,7 @@ func (x *IsAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IsAdminRequest.ProtoReflect.Descriptor instead.
 func (*IsAdminRequest) Descriptor() ([]byte, []int) {
-	return file_auth_auth_proto_rawDescGZIP(), []int{12}
+	return file_auth_auth_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *IsAdminRequest) GetUserId() int64 {
@@ -692,7 +627,7 @@ type IsAdminResponese struct {
 
 func (x *IsAdminResponese) Reset() {
 	*x = IsAdminResponese{}
-	mi := &file_auth_auth_proto_msgTypes[13]
+	mi := &file_auth_auth_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -704,7 +639,7 @@ func (x *IsAdminResponese) String() string {
 func (*IsAdminResponese) ProtoMessage() {}
 
 func (x *IsAdminResponese) ProtoReflect() protoreflect.Message {
-	mi := &file_auth_auth_proto_msgTypes[13]
+	mi := &file_auth_auth_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -717,7 +652,7 @@ func (x *IsAdminResponese) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IsAdminResponese.ProtoReflect.Descriptor instead.
 func (*IsAdminResponese) Descriptor() ([]byte, []int) {
-	return file_auth_auth_proto_rawDescGZIP(), []int{13}
+	return file_auth_auth_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *IsAdminResponese) GetIsAdmin() bool {
@@ -748,36 +683,35 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\n" +
 	"new_number\x18\x01 \x01(\tR\tnewNumber\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12\x15\n" +
-	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"5\n" +
-	"\x19DisplayTelephoneResponese\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"b\n" +
-	"\x13DisplayEmailRequest\x12\x1b\n" +
-	"\tnew_email\x18\x01 \x01(\tR\bnewEmail\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12\x15\n" +
-	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"-\n" +
-	"\x15DisplayEmailResponese\x12\x14\n" +
+	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"1\n" +
+	"\x19DisplayTelephoneResponese\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"C\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
+	"\x05phone\x18\x01 \x01(\tR\x05phone\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\",\n" +
 	"\x11RegisterResponese\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"W\n" +
-	"\fLoginRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x15\n" +
-	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"&\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\"\xd0\x01\n" +
+	"\fLoginRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
+	"\asurname\x18\x02 \x01(\tR\asurname\x12\x10\n" +
+	"\x03sex\x18\x03 \x01(\tR\x03sex\x12\x1d\n" +
+	"\n" +
+	"birth_date\x18\x04 \x01(\tR\tbirthDate\x12\x14\n" +
+	"\x05phone\x18\x05 \x01(\tR\x05phone\x12\x18\n" +
+	"\acompany\x18\x06 \x01(\tR\acompany\x12\x1a\n" +
+	"\bpassword\x18\a \x01(\tR\bpassword\x12\x15\n" +
+	"\x06app_id\x18\b \x01(\x05R\x05appId\"&\n" +
 	"\x0eLoginResponese\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\")\n" +
 	"\x0eIsAdminRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"-\n" +
 	"\x10IsAdminResponese\x12\x19\n" +
-	"\bis_admin\x18\x01 \x01(\bR\aisAdmin2\xc6\x05\n" +
+	"\bis_admin\x18\x01 \x01(\bR\aisAdmin2\xaa\x04\n" +
 	"\x04Auth\x12S\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x17.auth.RegisterResponese\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/id/register\x12G\n" +
-	"\x05Login\x12\x12.auth.LoginRequest\x1a\x14.auth.LoginResponese\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/id/login\x12\x7f\n" +
-	"\x12UpdateDisplayEmail\x12\x19.auth.DisplayEmailRequest\x1a\x1b.auth.DisplayEmailResponese\"1\x82\xd3\xe4\x93\x02+:\x01*\x1a&/account/personal/update-display-email\x12\x88\x01\n" +
-	"\x0fUpdateTelephone\x12\x1d.auth.DisplayTelephoneRequest\x1a\x1f.auth.DisplayTelephoneResponese\"5\x82\xd3\xe4\x93\x02/:\x01*\x1a*/account/personal/update-display-telephone\x12z\n" +
-	"\x0eChangePassword\x12\x1b.auth.ChangePasswordRequest\x1a\x1d.auth.ChangePasswordResponese\",\x82\xd3\xe4\x93\x02&:\x01*\x1a!/account/personal/change-password\x12_\n" +
+	"\x05Login\x12\x12.auth.LoginRequest\x1a\x14.auth.LoginResponese\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/id/login\x12u\n" +
+	"\x0fUpdateTelephone\x12\x1d.auth.DisplayTelephoneRequest\x1a\x1f.auth.DisplayTelephoneResponese\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\x1a\x17/account/personal/phone\x12s\n" +
+	"\x0eChangePassword\x12\x1b.auth.ChangePasswordRequest\x1a\x1d.auth.ChangePasswordResponese\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\x1a\x1a/account/personal/password\x12_\n" +
 	"\rDeleteAccount\x12\x14.auth.AccountRequest\x1a\x16.auth.AccountResponese\" \x82\xd3\xe4\x93\x02\x1a*\x18/account/personal/delete\x127\n" +
 	"\aIsAdmin\x12\x14.auth.IsAdminRequest\x1a\x16.auth.IsAdminResponeseB$Z\"github.com/wfx2/contracts;authGrpcb\x06proto3"
 
@@ -793,7 +727,7 @@ func file_auth_auth_proto_rawDescGZIP() []byte {
 	return file_auth_auth_proto_rawDescData
 }
 
-var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_auth_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_auth_auth_proto_goTypes = []any{
 	(*ChangePasswordRequest)(nil),     // 0: auth.ChangePasswordRequest
 	(*ChangePasswordResponese)(nil),   // 1: auth.ChangePasswordResponese
@@ -801,32 +735,28 @@ var file_auth_auth_proto_goTypes = []any{
 	(*AccountResponese)(nil),          // 3: auth.AccountResponese
 	(*DisplayTelephoneRequest)(nil),   // 4: auth.DisplayTelephoneRequest
 	(*DisplayTelephoneResponese)(nil), // 5: auth.DisplayTelephoneResponese
-	(*DisplayEmailRequest)(nil),       // 6: auth.DisplayEmailRequest
-	(*DisplayEmailResponese)(nil),     // 7: auth.DisplayEmailResponese
-	(*RegisterRequest)(nil),           // 8: auth.RegisterRequest
-	(*RegisterResponese)(nil),         // 9: auth.RegisterResponese
-	(*LoginRequest)(nil),              // 10: auth.LoginRequest
-	(*LoginResponese)(nil),            // 11: auth.LoginResponese
-	(*IsAdminRequest)(nil),            // 12: auth.IsAdminRequest
-	(*IsAdminResponese)(nil),          // 13: auth.IsAdminResponese
+	(*RegisterRequest)(nil),           // 6: auth.RegisterRequest
+	(*RegisterResponese)(nil),         // 7: auth.RegisterResponese
+	(*LoginRequest)(nil),              // 8: auth.LoginRequest
+	(*LoginResponese)(nil),            // 9: auth.LoginResponese
+	(*IsAdminRequest)(nil),            // 10: auth.IsAdminRequest
+	(*IsAdminResponese)(nil),          // 11: auth.IsAdminResponese
 }
 var file_auth_auth_proto_depIdxs = []int32{
-	8,  // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
-	10, // 1: auth.Auth.Login:input_type -> auth.LoginRequest
-	6,  // 2: auth.Auth.UpdateDisplayEmail:input_type -> auth.DisplayEmailRequest
-	4,  // 3: auth.Auth.UpdateTelephone:input_type -> auth.DisplayTelephoneRequest
-	0,  // 4: auth.Auth.ChangePassword:input_type -> auth.ChangePasswordRequest
-	2,  // 5: auth.Auth.DeleteAccount:input_type -> auth.AccountRequest
-	12, // 6: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
-	9,  // 7: auth.Auth.Register:output_type -> auth.RegisterResponese
-	11, // 8: auth.Auth.Login:output_type -> auth.LoginResponese
-	7,  // 9: auth.Auth.UpdateDisplayEmail:output_type -> auth.DisplayEmailResponese
-	5,  // 10: auth.Auth.UpdateTelephone:output_type -> auth.DisplayTelephoneResponese
-	1,  // 11: auth.Auth.ChangePassword:output_type -> auth.ChangePasswordResponese
-	3,  // 12: auth.Auth.DeleteAccount:output_type -> auth.AccountResponese
-	13, // 13: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponese
-	7,  // [7:14] is the sub-list for method output_type
-	0,  // [0:7] is the sub-list for method input_type
+	6,  // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
+	8,  // 1: auth.Auth.Login:input_type -> auth.LoginRequest
+	4,  // 2: auth.Auth.UpdateTelephone:input_type -> auth.DisplayTelephoneRequest
+	0,  // 3: auth.Auth.ChangePassword:input_type -> auth.ChangePasswordRequest
+	2,  // 4: auth.Auth.DeleteAccount:input_type -> auth.AccountRequest
+	10, // 5: auth.Auth.IsAdmin:input_type -> auth.IsAdminRequest
+	7,  // 6: auth.Auth.Register:output_type -> auth.RegisterResponese
+	9,  // 7: auth.Auth.Login:output_type -> auth.LoginResponese
+	5,  // 8: auth.Auth.UpdateTelephone:output_type -> auth.DisplayTelephoneResponese
+	1,  // 9: auth.Auth.ChangePassword:output_type -> auth.ChangePasswordResponese
+	3,  // 10: auth.Auth.DeleteAccount:output_type -> auth.AccountResponese
+	11, // 11: auth.Auth.IsAdmin:output_type -> auth.IsAdminResponese
+	6,  // [6:12] is the sub-list for method output_type
+	0,  // [0:6] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -843,7 +773,7 @@ func file_auth_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_auth_proto_rawDesc), len(file_auth_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

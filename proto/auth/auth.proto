@@ -13,30 +13,24 @@ service Auth {
             body: "*"
         };
     };
+
     rpc Login (LoginRequest) returns (LoginResponese){
     option (google.api.http) = {
         post: "/id/login"
         body: "*"
-    };
-    };
-
-    rpc UpdateDisplayEmail (DisplayEmailRequest) returns( DisplayEmailResponese){
-        option (google.api.http) = {
-            put: "/account/personal/update-display-email"
-            body: "*"
         };
     };
 
     rpc UpdateTelephone (DisplayTelephoneRequest) returns( DisplayTelephoneResponese){
         option (google.api.http) = {
-            put: "/account/personal/update-display-telephone"
+            put: "/account/personal/phone"
             body: "*"
         };
     };
 
     rpc ChangePassword (ChangePasswordRequest) returns( ChangePasswordResponese){
         option (google.api.http) = {
-            put: "/account/personal/change-password"
+            put: "/account/personal/password"
             body: "*"
         };
     };
@@ -77,21 +71,12 @@ message DisplayTelephoneRequest{
 }
 
 message DisplayTelephoneResponese{
-    bool success = 1;
+    string token = 1;
 }
 
-message DisplayEmailRequest{
-    string new_email =1;
-    int64 user_id = 2;
-    int32 app_id =3;
-}
-
-message DisplayEmailResponese{
-    string token =1;
-}
 
 message RegisterRequest{
-    string email = 1;
+    string phone = 1;
     string password = 2;
 }
 
@@ -100,9 +85,14 @@ message RegisterResponese{
 }
 
 message LoginRequest{
-    string email = 1;
-    string password = 2;
-    int32 app_id = 3;
+    string name = 1;
+    string surname = 2;
+    string sex = 3;
+    string birth_date = 4;
+    string phone = 5;
+    string company = 6;
+    string password = 7;
+    int32 app_id = 8;
 }
 
 message LoginResponese{

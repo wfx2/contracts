@@ -8,7 +8,6 @@ package authGrpc
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,13 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_Register_FullMethodName           = "/auth.Auth/Register"
-	Auth_Login_FullMethodName              = "/auth.Auth/Login"
-	Auth_UpdateDisplayEmail_FullMethodName = "/auth.Auth/UpdateDisplayEmail"
-	Auth_UpdateTelephone_FullMethodName    = "/auth.Auth/UpdateTelephone"
-	Auth_ChangePassword_FullMethodName     = "/auth.Auth/ChangePassword"
-	Auth_DeleteAccount_FullMethodName      = "/auth.Auth/DeleteAccount"
-	Auth_IsAdmin_FullMethodName            = "/auth.Auth/IsAdmin"
+	Auth_Register_FullMethodName        = "/auth.Auth/Register"
+	Auth_Login_FullMethodName           = "/auth.Auth/Login"
+	Auth_UpdateTelephone_FullMethodName = "/auth.Auth/UpdateTelephone"
+	Auth_ChangePassword_FullMethodName  = "/auth.Auth/ChangePassword"
+	Auth_DeleteAccount_FullMethodName   = "/auth.Auth/DeleteAccount"
+	Auth_IsAdmin_FullMethodName         = "/auth.Auth/IsAdmin"
 )
 
 // AuthClient is the client API for Auth service.
@@ -35,7 +33,6 @@ const (
 type AuthClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponese, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponese, error)
-	UpdateDisplayEmail(ctx context.Context, in *DisplayEmailRequest, opts ...grpc.CallOption) (*DisplayEmailResponese, error)
 	UpdateTelephone(ctx context.Context, in *DisplayTelephoneRequest, opts ...grpc.CallOption) (*DisplayTelephoneResponese, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponese, error)
 	DeleteAccount(ctx context.Context, in *AccountRequest, opts ...grpc.CallOption) (*AccountResponese, error)
@@ -64,16 +61,6 @@ func (c *authClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.C
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LoginResponese)
 	err := c.cc.Invoke(ctx, Auth_Login_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *authClient) UpdateDisplayEmail(ctx context.Context, in *DisplayEmailRequest, opts ...grpc.CallOption) (*DisplayEmailResponese, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DisplayEmailResponese)
-	err := c.cc.Invoke(ctx, Auth_UpdateDisplayEmail_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -126,7 +113,6 @@ func (c *authClient) IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...gr
 type AuthServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponese, error)
 	Login(context.Context, *LoginRequest) (*LoginResponese, error)
-	UpdateDisplayEmail(context.Context, *DisplayEmailRequest) (*DisplayEmailResponese, error)
 	UpdateTelephone(context.Context, *DisplayTelephoneRequest) (*DisplayTelephoneResponese, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponese, error)
 	DeleteAccount(context.Context, *AccountRequest) (*AccountResponese, error)
@@ -146,9 +132,6 @@ func (UnimplementedAuthServer) Register(context.Context, *RegisterRequest) (*Reg
 }
 func (UnimplementedAuthServer) Login(context.Context, *LoginRequest) (*LoginResponese, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
-}
-func (UnimplementedAuthServer) UpdateDisplayEmail(context.Context, *DisplayEmailRequest) (*DisplayEmailResponese, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateDisplayEmail not implemented")
 }
 func (UnimplementedAuthServer) UpdateTelephone(context.Context, *DisplayTelephoneRequest) (*DisplayTelephoneResponese, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTelephone not implemented")
@@ -215,24 +198,6 @@ func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).Login(ctx, req.(*LoginRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Auth_UpdateDisplayEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DisplayEmailRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthServer).UpdateDisplayEmail(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Auth_UpdateDisplayEmail_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).UpdateDisplayEmail(ctx, req.(*DisplayEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -323,10 +288,6 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Login",
 			Handler:    _Auth_Login_Handler,
-		},
-		{
-			MethodName: "UpdateDisplayEmail",
-			Handler:    _Auth_UpdateDisplayEmail_Handler,
 		},
 		{
 			MethodName: "UpdateTelephone",
