@@ -83,6 +83,7 @@ message RegisterRequest{
     string phone = 5;
     string company = 6;
     string password = 7;
+    string city = 8;
 }
 
 message RegisterResponese{

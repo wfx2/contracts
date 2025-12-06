@@ -7,13 +7,12 @@
 package authGrpc
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -344,6 +343,7 @@ type RegisterRequest struct {
 	Phone         string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
 	Company       string                 `protobuf:"bytes,6,opt,name=company,proto3" json:"company,omitempty"`
 	Password      string                 `protobuf:"bytes,7,opt,name=password,proto3" json:"password,omitempty"`
+	City          string                 `protobuf:"bytes,8,opt,name=city,proto3" json:"city,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -423,6 +423,13 @@ func (x *RegisterRequest) GetCompany() string {
 func (x *RegisterRequest) GetPassword() string {
 	if x != nil {
 		return x.Password
+	}
+	return ""
+}
+
+func (x *RegisterRequest) GetCity() string {
+	if x != nil {
+		return x.City
 	}
 	return ""
 }
@@ -686,7 +693,7 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12\x15\n" +
 	"\x06app_id\x18\x03 \x01(\x05R\x05appId\"&\n" +
 	"\x0ePhoneResponese\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"\xbc\x01\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\xd0\x01\n" +
 	"\x0fRegisterRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
 	"\asurname\x18\x02 \x01(\tR\asurname\x12\x10\n" +
@@ -695,7 +702,8 @@ const file_auth_auth_proto_rawDesc = "" +
 	"birth_date\x18\x04 \x01(\tR\tbirthDate\x12\x14\n" +
 	"\x05phone\x18\x05 \x01(\tR\x05phone\x12\x18\n" +
 	"\acompany\x18\x06 \x01(\tR\acompany\x12\x1a\n" +
-	"\bpassword\x18\a \x01(\tR\bpassword\",\n" +
+	"\bpassword\x18\a \x01(\tR\bpassword\x12\x12\n" +
+	"\x04city\x18\b \x01(\tR\x04city\",\n" +
 	"\x11RegisterResponese\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"W\n" +
 	"\fLoginRequest\x12\x14\n" +
