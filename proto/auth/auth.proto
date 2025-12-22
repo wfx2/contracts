@@ -71,7 +71,7 @@ message ForgotPasswordRequest{
 }
 
 message ForgotPasswordResponese{
-    int64 user_id = 1;
+    bool success = 1;
 }
 
 message AccountRequest{
