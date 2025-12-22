@@ -66,7 +66,8 @@ message PasswordResponese{
 message ForgotPasswordRequest{
     string new_password =1 ;
     string check_password = 2;
-    int32 appID =3;
+    string phone = 3;
+    int32 appID =4;
 }
 
 message ForgotPasswordResponese{

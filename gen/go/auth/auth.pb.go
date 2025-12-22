@@ -7,13 +7,12 @@
 package authGrpc
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -147,7 +146,8 @@ type ForgotPasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	NewPassword   string                 `protobuf:"bytes,1,opt,name=new_password,json=newPassword,proto3" json:"new_password,omitempty"`
 	CheckPassword string                 `protobuf:"bytes,2,opt,name=check_password,json=checkPassword,proto3" json:"check_password,omitempty"`
-	AppID         int32                  `protobuf:"varint,3,opt,name=appID,proto3" json:"appID,omitempty"`
+	Phone         string                 `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone,omitempty"`
+	AppID         int32                  `protobuf:"varint,4,opt,name=appID,proto3" json:"appID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -192,6 +192,13 @@ func (x *ForgotPasswordRequest) GetNewPassword() string {
 func (x *ForgotPasswordRequest) GetCheckPassword() string {
 	if x != nil {
 		return x.CheckPassword
+	}
+	return ""
+}
+
+func (x *ForgotPasswordRequest) GetPhone() string {
+	if x != nil {
+		return x.Phone
 	}
 	return ""
 }
@@ -819,11 +826,12 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\auser_id\x18\x04 \x01(\x03R\x06userId\x12\x14\n" +
 	"\x05appID\x18\x05 \x01(\x05R\x05appID\")\n" +
 	"\x11PasswordResponese\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"w\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\x8d\x01\n" +
 	"\x15ForgotPasswordRequest\x12!\n" +
 	"\fnew_password\x18\x01 \x01(\tR\vnewPassword\x12%\n" +
 	"\x0echeck_password\x18\x02 \x01(\tR\rcheckPassword\x12\x14\n" +
-	"\x05appID\x18\x03 \x01(\x05R\x05appID\"3\n" +
+	"\x05phone\x18\x03 \x01(\tR\x05phone\x12\x14\n" +
+	"\x05appID\x18\x04 \x01(\x05R\x05appID\"3\n" +
 	"\x17ForgotPasswordResponese\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\")\n" +
 	"\x0eAccountRequest\x12\x17\n" +
