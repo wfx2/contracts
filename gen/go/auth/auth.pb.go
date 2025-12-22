@@ -147,8 +147,7 @@ type ForgotPasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	NewPassword   string                 `protobuf:"bytes,1,opt,name=new_password,json=newPassword,proto3" json:"new_password,omitempty"`
 	CheckPassword string                 `protobuf:"bytes,2,opt,name=check_password,json=checkPassword,proto3" json:"check_password,omitempty"`
-	UserId        int64                  `protobuf:"varint,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	AppID         int32                  `protobuf:"varint,4,opt,name=appID,proto3" json:"appID,omitempty"`
+	AppID         int32                  `protobuf:"varint,3,opt,name=appID,proto3" json:"appID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -195,13 +194,6 @@ func (x *ForgotPasswordRequest) GetCheckPassword() string {
 		return x.CheckPassword
 	}
 	return ""
-}
-
-func (x *ForgotPasswordRequest) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
 }
 
 func (x *ForgotPasswordRequest) GetAppID() int32 {
@@ -827,12 +819,11 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\auser_id\x18\x04 \x01(\x03R\x06userId\x12\x14\n" +
 	"\x05appID\x18\x05 \x01(\x05R\x05appID\")\n" +
 	"\x11PasswordResponese\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"\x90\x01\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"w\n" +
 	"\x15ForgotPasswordRequest\x12!\n" +
 	"\fnew_password\x18\x01 \x01(\tR\vnewPassword\x12%\n" +
-	"\x0echeck_password\x18\x02 \x01(\tR\rcheckPassword\x12\x17\n" +
-	"\auser_id\x18\x03 \x01(\x03R\x06userId\x12\x14\n" +
-	"\x05appID\x18\x04 \x01(\x05R\x05appID\"3\n" +
+	"\x0echeck_password\x18\x02 \x01(\tR\rcheckPassword\x12\x14\n" +
+	"\x05appID\x18\x03 \x01(\x05R\x05appID\"3\n" +
 	"\x17ForgotPasswordResponese\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\")\n" +
 	"\x0eAccountRequest\x12\x17\n" +
