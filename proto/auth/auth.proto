@@ -21,9 +21,9 @@ service Auth {
         };
     };
 
-    rpc UpdateTelephone (PhoneRequest) returns( PhoneResponese){
+    rpc UpdatePersonalData (PersonalDataRequest) returns( PersonalDataResponese){
         option (google.api.http) = {
-            put: "/account/personal/phone"
+            put: "/account/personal/data"
             body: "*"
         };
     };
@@ -31,6 +31,13 @@ service Auth {
     rpc ChangePassword (PasswordRequest) returns( PasswordResponese){
         option (google.api.http) = {
             put: "/account/personal/password"
+            body: "*"
+        };
+    };
+
+       rpc ForgotPassword (ForgotPasswordRequest) returns( ForgotPasswordResponese){
+        option (google.api.http) = {
+            put: "/account/personal/confirm/password"
             body: "*"
         };
     };
@@ -47,12 +54,23 @@ service Auth {
 message PasswordRequest{
     string new_password =1 ;
     string check_password = 2;
-    string old_passwaord = 5;
+    string old_passwaord = 3;
+    int64 user_id = 4;
+    int32 appID =5;
+}
+
+message PasswordResponese{
+    string token = 1;
+}
+
+message ForgotPasswordRequest{
+    string new_password =1 ;
+    string check_password = 2;
     int64 user_id = 3;
     int32 appID =4;
 }
 
-message PasswordResponese{
+message ForgotPasswordResponese{
     string token = 1;
 }
 
@@ -64,13 +82,17 @@ message AccountResponese{
     bool is_user = 1;
 }
 
-message PhoneRequest{
+message PersonalDataRequest{
     string new_number = 1;
-    int64 user_id = 2;
-    int32 app_id =3;
+    string name = 2;
+    string surname = 3;
+    string birth_date = 4;
+    string city = 5;
+    int64 user_id = 6;
+    int32 app_id =7;
 }
 
-message PhoneResponese{
+message PersonalDataResponese{
     string token = 1;
 }
 

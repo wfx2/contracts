@@ -19,12 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_Register_FullMethodName        = "/auth.Auth/Register"
-	Auth_Login_FullMethodName           = "/auth.Auth/Login"
-	Auth_UpdateTelephone_FullMethodName = "/auth.Auth/UpdateTelephone"
-	Auth_ChangePassword_FullMethodName  = "/auth.Auth/ChangePassword"
-	Auth_DeleteAccount_FullMethodName   = "/auth.Auth/DeleteAccount"
-	Auth_IsAdmin_FullMethodName         = "/auth.Auth/IsAdmin"
+	Auth_Register_FullMethodName           = "/auth.Auth/Register"
+	Auth_Login_FullMethodName              = "/auth.Auth/Login"
+	Auth_UpdatePersonalData_FullMethodName = "/auth.Auth/UpdatePersonalData"
+	Auth_ChangePassword_FullMethodName     = "/auth.Auth/ChangePassword"
+	Auth_ForgotPassword_FullMethodName     = "/auth.Auth/ForgotPassword"
+	Auth_DeleteAccount_FullMethodName      = "/auth.Auth/DeleteAccount"
+	Auth_IsAdmin_FullMethodName            = "/auth.Auth/IsAdmin"
 )
 
 // AuthClient is the client API for Auth service.
@@ -33,8 +34,9 @@ const (
 type AuthClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponese, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponese, error)
-	UpdateTelephone(ctx context.Context, in *PhoneRequest, opts ...grpc.CallOption) (*PhoneResponese, error)
+	UpdatePersonalData(ctx context.Context, in *PersonalDataRequest, opts ...grpc.CallOption) (*PersonalDataResponese, error)
 	ChangePassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*PasswordResponese, error)
+	ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponese, error)
 	DeleteAccount(ctx context.Context, in *AccountRequest, opts ...grpc.CallOption) (*AccountResponese, error)
 	IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...grpc.CallOption) (*IsAdminResponese, error)
 }
@@ -67,10 +69,10 @@ func (c *authClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.C
 	return out, nil
 }
 
-func (c *authClient) UpdateTelephone(ctx context.Context, in *PhoneRequest, opts ...grpc.CallOption) (*PhoneResponese, error) {
+func (c *authClient) UpdatePersonalData(ctx context.Context, in *PersonalDataRequest, opts ...grpc.CallOption) (*PersonalDataResponese, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PhoneResponese)
-	err := c.cc.Invoke(ctx, Auth_UpdateTelephone_FullMethodName, in, out, cOpts...)
+	out := new(PersonalDataResponese)
+	err := c.cc.Invoke(ctx, Auth_UpdatePersonalData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -81,6 +83,16 @@ func (c *authClient) ChangePassword(ctx context.Context, in *PasswordRequest, op
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(PasswordResponese)
 	err := c.cc.Invoke(ctx, Auth_ChangePassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) ForgotPassword(ctx context.Context, in *ForgotPasswordRequest, opts ...grpc.CallOption) (*ForgotPasswordResponese, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ForgotPasswordResponese)
+	err := c.cc.Invoke(ctx, Auth_ForgotPassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -113,8 +125,9 @@ func (c *authClient) IsAdmin(ctx context.Context, in *IsAdminRequest, opts ...gr
 type AuthServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponese, error)
 	Login(context.Context, *LoginRequest) (*LoginResponese, error)
-	UpdateTelephone(context.Context, *PhoneRequest) (*PhoneResponese, error)
+	UpdatePersonalData(context.Context, *PersonalDataRequest) (*PersonalDataResponese, error)
 	ChangePassword(context.Context, *PasswordRequest) (*PasswordResponese, error)
+	ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponese, error)
 	DeleteAccount(context.Context, *AccountRequest) (*AccountResponese, error)
 	IsAdmin(context.Context, *IsAdminRequest) (*IsAdminResponese, error)
 	mustEmbedUnimplementedAuthServer()
@@ -133,11 +146,14 @@ func (UnimplementedAuthServer) Register(context.Context, *RegisterRequest) (*Reg
 func (UnimplementedAuthServer) Login(context.Context, *LoginRequest) (*LoginResponese, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (UnimplementedAuthServer) UpdateTelephone(context.Context, *PhoneRequest) (*PhoneResponese, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateTelephone not implemented")
+func (UnimplementedAuthServer) UpdatePersonalData(context.Context, *PersonalDataRequest) (*PersonalDataResponese, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePersonalData not implemented")
 }
 func (UnimplementedAuthServer) ChangePassword(context.Context, *PasswordRequest) (*PasswordResponese, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
+}
+func (UnimplementedAuthServer) ForgotPassword(context.Context, *ForgotPasswordRequest) (*ForgotPasswordResponese, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
 }
 func (UnimplementedAuthServer) DeleteAccount(context.Context, *AccountRequest) (*AccountResponese, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAccount not implemented")
@@ -202,20 +218,20 @@ func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_UpdateTelephone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PhoneRequest)
+func _Auth_UpdatePersonalData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PersonalDataRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).UpdateTelephone(ctx, in)
+		return srv.(AuthServer).UpdatePersonalData(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_UpdateTelephone_FullMethodName,
+		FullMethod: Auth_UpdatePersonalData_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).UpdateTelephone(ctx, req.(*PhoneRequest))
+		return srv.(AuthServer).UpdatePersonalData(ctx, req.(*PersonalDataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -234,6 +250,24 @@ func _Auth_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).ChangePassword(ctx, req.(*PasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ForgotPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).ForgotPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_ForgotPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).ForgotPassword(ctx, req.(*ForgotPasswordRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -290,12 +324,16 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_Login_Handler,
 		},
 		{
-			MethodName: "UpdateTelephone",
-			Handler:    _Auth_UpdateTelephone_Handler,
+			MethodName: "UpdatePersonalData",
+			Handler:    _Auth_UpdatePersonalData_Handler,
 		},
 		{
 			MethodName: "ChangePassword",
 			Handler:    _Auth_ChangePassword_Handler,
+		},
+		{
+			MethodName: "ForgotPassword",
+			Handler:    _Auth_ForgotPassword_Handler,
 		},
 		{
 			MethodName: "DeleteAccount",
