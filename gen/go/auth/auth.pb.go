@@ -7,12 +7,13 @@
 package authGrpc
 
 import (
-	_ "google.golang.org/genproto/googleapis/api/annotations"
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
+
+	_ "google.golang.org/genproto/googleapis/api/annotations"
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -212,7 +213,7 @@ func (x *ForgotPasswordRequest) GetAppID() int32 {
 
 type ForgotPasswordResponese struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -247,11 +248,11 @@ func (*ForgotPasswordResponese) Descriptor() ([]byte, []int) {
 	return file_auth_auth_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ForgotPasswordResponese) GetToken() string {
+func (x *ForgotPasswordResponese) GetUserId() int64 {
 	if x != nil {
-		return x.Token
+		return x.UserId
 	}
-	return ""
+	return 0
 }
 
 type AccountRequest struct {
@@ -831,9 +832,9 @@ const file_auth_auth_proto_rawDesc = "" +
 	"\fnew_password\x18\x01 \x01(\tR\vnewPassword\x12%\n" +
 	"\x0echeck_password\x18\x02 \x01(\tR\rcheckPassword\x12\x17\n" +
 	"\auser_id\x18\x03 \x01(\x03R\x06userId\x12\x14\n" +
-	"\x05appID\x18\x04 \x01(\x05R\x05appID\"/\n" +
-	"\x17ForgotPasswordResponese\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\")\n" +
+	"\x05appID\x18\x04 \x01(\x05R\x05appID\"2\n" +
+	"\x17ForgotPasswordResponese\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\")\n" +
 	"\x0eAccountRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"+\n" +
 	"\x10AccountResponese\x12\x17\n" +
